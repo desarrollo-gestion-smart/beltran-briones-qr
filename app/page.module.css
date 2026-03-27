@@ -1,0 +1,480 @@
+/* ── BROWSER BAR ── */
+.browserBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #e4e4e4;
+  border-bottom: 1px solid #ccc;
+  padding: 9px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 100;
+}
+
+.bdots {
+  display: flex;
+  gap: 5px;
+}
+
+.bdots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.bdots span:nth-child(1) { background: #ff5f57; }
+.bdots span:nth-child(2) { background: #ffbd2e; }
+.bdots span:nth-child(3) { background: #28ca41; }
+
+.urlBar {
+  flex: 1;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-size: 11px;
+  color: #666;
+  letter-spacing: 0.02em;
+}
+
+.progressTop {
+  position: fixed;
+  top: 38px;
+  left: 0;
+  height: 2px;
+  background: #c0392b;
+  animation: prog 10s ease-in-out forwards;
+  z-index: 101;
+}
+
+@keyframes prog {
+  0%   { width: 0%; }
+  8%   { width: 15%; }
+  20%  { width: 20%; }
+  38%  { width: 38%; }
+  40%  { width: 38.2%; }
+  60%  { width: 52%; }
+  65%  { width: 52.5%; }
+  85%  { width: 67%; }
+  100% { width: 72%; }
+}
+
+/* ── ESCENA ── */
+.escena {
+  margin-top: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 440px;
+  padding: 0 4px;
+}
+
+.tituloTop {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #bbb;
+}
+
+/* ── CANVAS ── */
+.construccion {
+  position: relative;
+  width: min(340px, 100%);
+  height: 240px;
+}
+
+.suelo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: #9b8365;
+  border-radius: 2px;
+}
+
+.suelo::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #b09878;
+}
+
+/* ── GRÚA ── */
+.grua {
+  position: absolute;
+  right: 18px;
+  bottom: 10px;
+}
+
+.gruaTorre {
+  width: 5px;
+  height: 120px;
+  background: #e8b84b;
+  margin-left: 12px;
+  position: relative;
+}
+
+.gruaTorre::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -12px;
+  width: 30px;
+  height: 3px;
+  background: #e8b84b;
+}
+
+.gruaTorre::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  right: 0;
+  width: 2px;
+  height: 16px;
+  background: #e8b84b;
+}
+
+.gruaCable {
+  position: absolute;
+  top: 19px;
+  right: 0;
+  width: 1px;
+  height: 28px;
+  background: #999;
+}
+
+.gruaCarga {
+  position: absolute;
+  top: 47px;
+  right: -4px;
+  width: 10px;
+  height: 7px;
+  background: #c0392b;
+  border-radius: 1px;
+  animation: colgando 2.2s ease-in-out infinite;
+}
+
+@keyframes colgando {
+  0%,100% { transform: rotate(-4deg); }
+  50%     { transform: rotate(4deg); }
+}
+
+/* ── EDIFICIO ── */
+.edificio {
+  position: absolute;
+  bottom: 10px;
+  left: 24px;
+  width: 200px;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 2px;
+}
+
+.fila {
+  display: flex;
+  gap: 2px;
+  opacity: 0;
+  transform: translateY(3px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.fila.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lb {
+  height: 15px;
+  background: #c0392b;
+  border-radius: 2px;
+  flex: 1;
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.18),
+              inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  position: relative;
+}
+
+.lb.half {
+  flex: 0.5;
+}
+
+.ventana::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  background: #a8d4f5;
+  border-radius: 1px;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+/* ── OBRERO ── */
+.obreroWrap {
+  position: absolute;
+  left: 24px;
+  transition: bottom 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+}
+
+.obrero {
+  position: relative;
+  width: 20px;
+  height: 36px;
+}
+
+.casco {
+  position: absolute;
+  top: 0;
+  left: 2px;
+  width: 15px;
+  height: 7px;
+  background: #e8b84b;
+  border-radius: 7px 7px 0 0;
+}
+
+.casco::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: -2px;
+  width: 19px;
+  height: 2px;
+  background: #d4a535;
+  border-radius: 1px;
+}
+
+.cabeza {
+  position: absolute;
+  top: 6px;
+  left: 4px;
+  width: 11px;
+  height: 9px;
+  background: #f5c89a;
+  border-radius: 3px;
+}
+
+.cuerpo {
+  position: absolute;
+  top: 15px;
+  left: 3px;
+  width: 13px;
+  height: 11px;
+  background: #2980b9;
+  border-radius: 2px;
+}
+
+.brazoD {
+  position: absolute;
+  top: 16px;
+  right: -4px;
+  width: 5px;
+  height: 9px;
+  background: #2471a3;
+  border-radius: 2px;
+  transform-origin: top center;
+  animation: bd 0.45s ease-in-out infinite alternate;
+}
+
+@keyframes bd {
+  from { transform: rotate(-15deg); }
+  to   { transform: rotate(25deg); }
+}
+
+.brazoI {
+  position: absolute;
+  top: 16px;
+  left: -4px;
+  width: 5px;
+  height: 9px;
+  background: #2471a3;
+  border-radius: 2px;
+  transform-origin: top center;
+  animation: bi 0.45s ease-in-out infinite alternate;
+}
+
+@keyframes bi {
+  from { transform: rotate(15deg); }
+  to   { transform: rotate(-15deg); }
+}
+
+.lbMano {
+  position: absolute;
+  top: 12px;
+  right: -13px;
+  width: 10px;
+  height: 6px;
+  background: #c0392b;
+  border-radius: 1px;
+  animation: bd 0.45s ease-in-out infinite alternate;
+  transform-origin: left center;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.piernaD {
+  position: absolute;
+  top: 26px;
+  left: 8px;
+  width: 5px;
+  height: 10px;
+  background: #1a5276;
+  border-radius: 0 0 2px 2px;
+  animation: pd 0.38s ease-in-out infinite alternate;
+}
+
+@keyframes pd {
+  from { transform: rotate(-6deg); }
+  to   { transform: rotate(6deg); }
+}
+
+.piernaI {
+  position: absolute;
+  top: 26px;
+  left: 3px;
+  width: 5px;
+  height: 10px;
+  background: #1a5276;
+  border-radius: 0 0 2px 2px;
+  animation: pi 0.38s ease-in-out infinite alternate;
+}
+
+@keyframes pi {
+  from { transform: rotate(6deg); }
+  to   { transform: rotate(-6deg); }
+}
+
+/* ── TEXTOS FASE 1 ── */
+.mensajePrincipal {
+  font-size: clamp(15px, 4.2vw, 18px);
+  font-weight: 600;
+  color: #0a1f44;
+  text-align: center;
+  line-height: 1.65;
+}
+
+.mensajePrincipal em {
+  color: #c0392b;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.progreso {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #bbb;
+}
+
+.msgRotante {
+  font-size: clamp(12px, 3.4vw, 14px);
+  font-weight: 400;
+  color: #888;
+  text-align: center;
+  line-height: 1.7;
+  min-height: 40px;
+  transition: opacity 0.35s;
+  max-width: 320px;
+  font-style: italic;
+}
+
+/* ── FASE FINAL ── */
+.faseFinal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  text-align: center;
+  width: 100%;
+  max-width: 440px;
+  padding: 28px 20px 36px;
+  margin-top: 44px;
+  animation: fadeIn 0.7s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.edificioEmoji {
+  font-size: clamp(52px, 15vw, 72px);
+  line-height: 1;
+}
+
+.lineaRoja {
+  width: 40px;
+  height: 3px;
+  background: #c0392b;
+  border-radius: 2px;
+}
+
+.faseFinal h2 {
+  font-size: clamp(22px, 6vw, 28px);
+  font-weight: 700;
+  color: #0a1f44;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.faseFinal p {
+  font-size: clamp(14px, 3.8vw, 16px);
+  font-weight: 400;
+  color: #4a4a4a;
+  line-height: 1.8;
+  max-width: 360px;
+}
+
+.faseFinal p strong {
+  color: #c0392b;
+  font-weight: 600;
+}
+
+.aliado {
+  background: #0a1f44;
+  border-radius: 12px;
+  padding: 20px 24px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.faseFinal .aliado p {
+  color: #e8e8e8;
+  font-size: clamp(14px, 3.8vw, 15px);
+  line-height: 1.75;
+}
+
+.faseFinal .aliado p strong {
+  color: #e8b84b;
+  font-weight: 600;
+}
+
+.firma {
+  font-size: clamp(13px, 3.5vw, 15px);
+  font-weight: 600;
+  color: #0a1f44;
+  letter-spacing: 0.03em;
+}
+
+.contactoFinal {
+  font-size: clamp(11px, 3vw, 13px);
+  color: #888;
+  letter-spacing: 0.04em;
+  line-height: 1.9;
+}
+
+.redir {
+  font-size: 10px;
+  color: #ccc;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
